@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Home page</title>
+        <style>
+            h1{
+                color: red;
+            }
+        </style>
+        <script>
+            // const queryString = window.location.search;
+            // const urlParms = new URLSearchParams(queryString);
+            // console.log(urlParms);
+            // const name = urlParms.get('name');
+            // let displayData = document.getElementById("data");
+            // displayData.innerHTML = name;
+            setTimeout(() => {
+                // let name = getCookie('name');
+                let displayData = document.getElementById("data");
+                // displayData.innerHTML = name;
+            }, 100);
+            function getCookie(cName) {
+                let name = cName + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                console.log(decodedCookie);
+                let stg = decodedCookie.split(';');
+                // console.log(stg);
+                let newStg = [];
+                let nameCookie = '';
+                console.log(nameCookie);
+                for(let i = 0; i < stg.length; i++) {
+                    newStg = stg[i].split('=');
+                    console.log(newStg);
+                    if(newStg[i] === 'name') {
+                        nameCookie = newStg[i + 1];
+                    }
+                }
+                console.log(nameCookie);
+            }
+            getCookie('name');
+
+        </script>
+    </head>
+    <body>
+        <h1>Welcome to Home page</h1>
+        <div id="data">
+
+        </div>
+    </body>
+</html>
