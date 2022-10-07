@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Home Page</title>
+        <style>
+            h1 {
+                color: blueviolet;
+                font-style: oblique;
+            }
+        </style>
+        <script>
+            function getCookie(cAge) {
+                let name = cAge + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                console.log(decodedCookie);
+                let stg = decodedCookie.split(';');
+                console.log(stg);
+                let newStg = [];
+                let cookie = '';
+                console.log(cookie);
+                for(let i = 0; i < stg.length; i++) {
+                    newStg = stg[i].split('=');
+                    console.log(newStg);                    
+                    if(newStg[0] === ' age') {
+                        cookie = newStg[1];
+                    }
+                }
+                return cookie;
+            }
+            setTimeout(() => {
+                let age = getCookie('age');
+                let displayData = document.getElementById("data");
+                displayData.innerHTML = age;
+            }, 100);
+        </script>
+    </head>
+    <body>
+        <h1>Welcome to New Web Page</h1>
+        <div id="data">
+
+        </div>
+    </body>
+</html>
