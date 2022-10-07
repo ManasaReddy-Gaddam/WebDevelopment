@@ -9,6 +9,7 @@
         <script>
             setTimeout(() => {
                 let name = getCookie('name');
+                console.log(name);
                 let displayData = document.getElementById("data");
                 displayData.innerHTML = name;
             }, 100);
@@ -17,20 +18,28 @@
                 let decodedCookie = decodeURIComponent(document.cookie);
                 console.log(decodedCookie);
                 let stg = decodedCookie.split(';');
-                // console.log(stg);
+                console.log(stg);
                 let newStg = [];
                 let nameCookie = '';
-                console.log(nameCookie);
+                // console.log(nameCookie);
                 for(let i = 0; i < stg.length; i++) {
-                    newStg = stg[i].split('=');
+                    newStg = stg[i].split('='); //tur=name
                     console.log(newStg);
-                    if(newStg[i] === 'name') {
-                        nameCookie = newStg[i + 1];
-                    }
+                    // for(let j = 0; j < newStg.length; j++) {
+                        // console.log(newStg[j]);
+                        console.log(newStg[0]);
+                        let result = newStg[0].localeCompare("name");
+                        console.log(result);
+                        if(newStg[0] === ' name') {
+                            nameCookie = newStg[1];
+                            console.log(nameCookie);
+                            break;
+                        }
+                    // }
                 }
-                console.log(nameCookie);
+                return nameCookie;
             }
-            getCookie('name');
+            // getCookie('name');
 
         </script>
     </head>
