@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <title>New Table</title>
+        <style>
+            table, td {
+                border: 3px solid rgb(108, 6, 186);
+                font-style: italic;
+            }
+        </style>
+        <script>
+            const persons = [
+                {
+                    employeeID: 1,
+                    name: 'Pranay',
+                    department:'Accounts',
+                    job: 'Manager',
+                    joiningDate: '15-12-2021',
+                    salary: 50000
+                },
+                {
+                    employeeID: 2,
+                    name: 'Vijay',
+                    department:'Quality & Control',
+                    job: 'Manager',
+                    joiningDate: '03-05-2019',
+                    salary: 30000
+                },
+                {
+                    employeeID: 3,
+                    name: 'Kalyan',
+                    department:'Sales',
+                    job: 'Executive',
+                    joiningDate: '18-04-2014',
+                    salary: 35000
+                },
+                {
+                    employeeID: 4,
+                    name: 'Reshmi',
+                    department:'Purchase',
+                    job: 'Asst Manager',
+                    joiningDate: '04-07-2016',
+                    salary: 25000
+                },
+                {
+                    employeeID: 5,
+                    name: 'Preethi',
+                    department:'Research',
+                    job: 'Manager',
+                    joiningDate: '25-04-2017',
+                    salary: 60000
+                },
+                {
+                    employeeID: 6,
+                    name: 'Sujitha',
+                    department:'Production',
+                    job: 'Manufacturing Chemist',
+                    joiningDate: '18-02-2020',
+                    salary: 90000
+                },
+                {
+                    employeeID: 7,
+                    name: 'Kranthi',
+                    department:'Stores',
+                    job: 'Manager',
+                    joiningDate: '13-03-2014',
+                    salary: 68000
+                },
+                {
+                    employeeID: 8,
+                    name: 'Adarsha',
+                    department:'Research & Development',
+                    job: 'Asst Manager',
+                    joiningDate: '01-08-2018',
+                    salary: 80000
+                },
+            ];
+            function createNewTable(persons) {
+                let table = document.getElementById('newTab');
+                for(let i = 0; i < persons.length; i++) {
+                    let row = table.insertRow();
+                    row.innerHTML = "<td>"+persons[i].employeeID+"</td><td>"+persons[i].name+"</td><td>"+persons[i].department+"</td><td>"+ persons[i].job+"</td><td>"+persons[i].joiningDate+"</td><td>"+persons[i].salary+"</td>";
+                }
+            }
+            setTimeout(() => createNewTable(persons), 100);
+
+            function checkSubStringPresentOrNot(stg1, stg2) { 
+                let stgLength = 0;  
+                let s1LowerCase = stg1.toLowerCase(); 
+                let s2LowerCase = stg2.toLowerCase(); 
+                for(let i = 0; i < s1LowerCase.length - s2LowerCase.length; i++) { 
+                    for(let j = 0; j < s2LowerCase.length; j++) {
+                        console.log(s1LowerCase[i + j]);
+                        if(s1LowerCase[i + j] === s2LowerCase[j]) {
+                            stgLength = stgLength + 1; 
+                        }
+                        if(s1LowerCase[i + j] !== s2LowerCase[j]) {
+                            stgLength = 0;
+                            break;
+                        }
+                        if(stgLength === s2LowerCase.length) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            } 
+            function filterPerson() {
+                let filteredPerson = [];
+                let userInput = document.getElementById('filterInput').value;
+                let columnChoice = document.getElementById('tableData').value;
+                for(let i = 0; i < array.length; i++) {
+                    let matchedData = checkSubStringPresentOrNot(array[i][columnChoice], userInput);
+                    if(matchedData) {
+                        filteredPerson.push(array[i]);
+                    }
+                    console.log(array[i][columnChoice] + ' ' + userInput + ' ' + matchedData);
+                }
+                newTab.innerHTML = " ";
+                newTab.innerHTML = "<tr><td>EmployeeId</td><td>Name</td><td>Department</td><td>Job</td><td>JoiningDate</td><td>Salary</td></tr>";
+                createNewTable(filteredPerson);
+            }
+        </script>
+    </head>
+    <body>
+        <input type="text" id="filterInput" placeholder="Enter the Text to filter" onkeyup="filterPerson()"/><br/>
+        <label for="cars">Choose A column to Filter Data</label>
+        <select name="columns" id="tableData">
+            <option value="EmpID">EmployeeId</option>
+            <option value="name">Name</option>
+            <option value="department">Department</option>
+            <option value="job">Job</option> 
+            <option value="jod">JoiningDate</option>
+            <option value="salary">Salary</option>
+         </select>
+        <h1>Persibs Table</h1>
+        <table id="newTab">
+            <tr>
+                <td>Emp Id</td>
+                <td>Name</td>
+                <td>Department</td>
+                <td>Job</td>
+                <td>JoiningDate</td>
+                <td>Salary</td>
+            </tr>
+        </table>
+    </body>
+</html>

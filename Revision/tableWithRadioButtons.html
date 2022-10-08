@@ -1,0 +1,169 @@
+<html>
+    <head>
+        <title>Table With Image</title>
+        <style>
+            body {
+                background-image: url('image.jpg');
+            }
+            table, td {
+                border: 2px solid #800004;
+                font-style: oblique;
+             }
+        </style>
+        <script>
+            const persons = [
+                { 
+                    name: 'Karthik',
+                    age: 27,
+                    gender: 'Male',
+                    address: 'Hyderabad',
+                    occupation: 'Self Employed'
+                    
+                },
+                {
+                    name: 'Praveena',
+                    age: 26,
+                    gender: 'Female',
+                    address: 'Karimnagar',
+                    occupation: 'Doctor'
+                },
+                {
+                    name: 'Krishna',
+                    age: 28,
+                    gender: 'Male',
+                    address: 'Adilabad',
+                    occupation: 'Teacher'
+                },
+                {
+                    name: 'Sampath',
+                    age: 21,
+                    gender: 'Male',
+                    address: 'Warangal',
+                    occupation: 'Singer'
+                },
+                {
+                    name: 'vidhya',
+                    age: 24,
+                    gender: 'Female',
+                    address: 'Karnool',
+                    occupation: 'Teacher'
+                },
+                {
+                    name: 'Vikram',
+                    age: 25,
+                    gender: 'Male',
+                    address: 'Banglore',
+                    occupation: 'Software'
+                },
+                {
+                    name: 'Poornima',
+                    age: 22,
+                    gender: 'Female',
+                    address: 'Khammam',
+                    occupation: 'Doctor'
+                },
+                {
+                    name: 'Vinay',
+                    age: 25,
+                    gender: 'Male',
+                    address: 'Suryapet',
+                    occupation: 'Technician'
+                }
+            ];
+            function createTable(persons) {
+                let table = document.getElementById('personsTab');
+                for(let i = 0; i < persons.length; i++) {
+                    let row = table.insertRow();
+                    row.innerHTML = "<td>"+persons[i].name+"</td><td>"+persons[i].age+"</td><td>"+persons[i].gender+"</td><td>"+persons[i].address+"</td><td>"+persons[i].occupation+"</td>";
+                }
+            }
+            setTimeout(() => createTable(persons),100);
+
+            function addPersonToTable() {
+                let name = document.getElementById('name').value;
+                let age = document.getElementById('age').value;
+                let gender = document.getElementById('male').checked; 
+                if(gender) {
+                    gender = document.getElementById('male').value;
+                }
+                else if (document.getElementById('female').checked) {
+                    gender = document.getElementById('female').value;
+                }
+                let address = document.getElementById('address').value;
+                let occupation = document.getElementById('occupation').value;
+                let newPerson = {name: name, age: age, gender: gender, address: address, occupation: occupation};
+                persons.push(newPerson);
+                let personsTab = document.getElementById('personsTab');
+                personsTab.innerHTML = " ";
+                personsTab.innerHTML =  "<tr><td>Name</td><td>Age</td><td>Gender</td><td>Address</td><td>Occupation</td></tr>";
+                createTable(persons);  
+            }
+            
+            function checkSubStringPresentOrNot(stg1, stg2) {
+                let s1 = stg1.toLowerCase();
+                let s2 = stg2.toLowerCase(); 
+                let length = 0;  
+                for(let i = 0; i < s1.length - s2.length; i++) { 
+                    for(let j = 0; j < s2.length; j++) { 
+                        if(s1[i + j] === s2[j]) { 
+                            length =  length + 1;
+                        }
+                        if(s1[i + j] !== s2[j]) {
+                            length = 0;
+                            break;
+                        }
+                        if(length === s2.length) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            } 
+
+            function filterStudents() {
+                let filteredStudent = [];
+                let userInput = document.getElementById('filterInput').value;
+                let columnChoice = document.getElementById('tabInf').value;
+                for(let i = 0; i < persons.length; i++) {
+                    let matchedStgData = checkSubStringPresentOrNot(persons[i][columnChoice], userInput);
+                    if(matchedStgData) {
+                        filteredStudent.push(persons[i]);
+                    }
+                }
+                let personsTab = document.getElementById('personsTab');
+                personsTab.innerHTML = " ";
+                personsTab.innerHTML =  "<tr><td>Name</td><td>Age</td><td>Gender</td><td>Address</td><td>Occupation</td></tr>";
+                createTable(filteredStudent);
+            }      
+        </script>
+    </head>
+    <body>
+        <input type="text" id="name" placeholder="Enter Name Here"/></br>
+        <input type="number" id="age" placeholder="Enter Age Here"/></br>
+        <label>Choose gender</label>
+        <input type="radio" id="male" name="gender" value="Male"/>Male
+        <input type="radio" id="female" name="gender" value="Female">Female</br>      
+        <input type="text" id="address" placeholder="Enter Address Here"/></br>
+        <input type="text" id="occupation" placeholder="Enter Occupation Here"/></br>
+        <button id="button" onclick="addPersonToTable()">Add Data</button></br>
+        <input type="text" id="filterInput" placeholder="Enter the Text to filter" onkeyup="filterStudents()"/><br/>
+        <label for="cars">Choose A column to Filter Data</label>
+        <select name="columns" id="tabInf">
+            <option value="name">Name</option>
+            <option value="age">Age</option>
+            <option value="gender">gender</option>
+            <option value="address">Address</option> 
+            <option value="occupation">Occupation</option>
+         </select>
+        <h1>Students Table</h1>
+        <table id="personsTab">
+            <tr>
+                <td>Name</td>
+                <td>Age</td>
+                <td>gender</td>
+                <td>Address</td>
+                <td>Occupation</td>
+            </tr>
+        </table>
+    </body>
+</html>
