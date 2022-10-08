@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Fetch() method</title>
+        <style>
+            table, th, td {
+                border: 2px solid hsl(308, 92%, 15%);            
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>JavaScript Fetch API</h1>
+        <h2>The fetch() Method</h2>
+        <p id="demo">Fetch a file to change this text.</p>
+
+        <script>
+            let file = "https://reqres.in/api/users?page=2"
+            fetch (file)
+            .then(x => x.text())
+            .then(y => {
+                let object = JSON.parse(y);
+                let users = object.data;
+                // console.log(users);
+                createTable(users);
+            });
+            function createTable(users) {
+                let table = document.getElementById('personsTab');
+                for(let i = 0; i < users.length; i++) {
+                    let row = table.insertRow();
+                    row.innerHTML = "<td>"+users[i].id+"</td><td>"+users[i].avatar+"</td><td>"+users[i].email+"</td><td>"+users[i].first_name+"</td><td>"+users[i].last_name+"</td>";
+                } 
+            }
+        </script>
+    <table id="personsTab">
+        <tr>
+            <td>Id</td>
+            <td>Avatar</td>
+            <td>Email</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+        </tr>
+    </table>
+    </body>
+</html>
