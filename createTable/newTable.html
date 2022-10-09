@@ -1,0 +1,177 @@
+<html>
+    <head>
+        <title>New Table</title>
+        <style>
+            table, td {
+                border: 3px solid rgb(108, 6, 186);
+                font-style: italic;
+            }
+        </style>
+        <script>
+            const array = [
+                {
+                    name: 'Rakesh',
+                    age: '26',
+                    address: 'Hasthinapuram',
+                    profession: 'Business',
+                    Income: '25000',
+                    userId: 'rakesh@123',
+                    password: 'rakesh#987'
+                },
+                {
+                   
+                    name: 'Saketh',
+                    age: '28',
+                    address: 'Hayathnagar',
+                    profession: 'Self Employee',
+                    Income: '35000',
+                    userId: 'Saketh@123',
+                    password: 'Saketh#678'
+                },
+                {
+                    
+                    name: 'Midhuna',
+                    age: '29',
+                    address: 'Tarnaka',
+                    profession: 'Doctor',
+                    Income: '45000',
+                    userId: 'Midhuna@123',
+                    password: 'Midhunah@123'
+                },
+                {
+                    
+                    name: 'Kalyan',
+                    age: '22',
+                    address: 'Kothapet',
+                    profession: '',
+                    Income: '25000',
+                    userId: 'rakesh@123',
+                    password: 'rakesh#987'
+                },
+                {
+                    
+                    name: 'Rakesh',
+                    age: '26',
+                    address: 'Hasthinapuram',
+                    profession: 'Business',
+                    Income: '25000',
+                    userId: 'rakesh@123',
+                    password: 'rakesh#987'
+                },
+                {
+                    
+                    name: 'Rakesh',
+                    age: '26',
+                    address: 'Hasthinapuram',
+                    profession: 'Business',
+                    Income: '25000',
+                    userId: 'rakesh@123',
+                    password: 'rakesh#987'
+                },
+                {
+                    
+                    name: 'Rakesh',
+                    age: '26',
+                    address: 'Hasthinapuram',
+                    profession: 'Business',
+                    Income: '25000',
+                    userId: 'rakesh@123',
+                    password: 'rakesh#987'
+                },
+                {
+                    
+                    name: 'Rakesh',
+                    age: '26',
+                    address: 'Hasthinapuram',
+                    profession: 'Business',
+                    Income: '25000',
+                    userId: 'rakesh@123',
+                    password: 'rakesh#987'
+                },
+            ]
+            function createNewTable(persons) {
+                let table = document.getElementById('newTab');
+                for(let i = 0; i < persons.length; i++) {
+                    let row = table.insertRow();
+                    row.innerHTML = "<td>"+persons[i].name+"</td><td>"+persons[i].age+"</td><td>"+persons[i].address+"</td><td>"+ persons[i].profession+"</td><td>"+persons[i].Income+"</td>";
+                }
+            }
+            setTimeout(() => createNewTable(array), 100);
+            function addDataToTable() {
+                let name = document.getElementById('name').value;
+                let age = document.getElementById('age').value;
+                let address = document.getElementById('address').value;
+                let profession = document.getElementById('profession').value;
+                let Income = document.getElementById('income').value;
+                let newPerson = {name: name, age: age, address: address, profession: profession, Income: Income};
+                array.push(newPerson);
+                newTab.innerHTML = " ";
+                newTab.innerHTML = "<tr><td>Name</td><td>Age</td><td>Address</td><td>Profession</td><td>Income</td></tr>";
+                createNewTable(array);
+            }
+            function checkSubStringPresentOrNot(stg1, stg2) { 
+                let stgLength = 0;  
+                let s1LowerCase = stg1.toLowerCase(); 
+                let s2LowerCase = stg2.toLowerCase(); 
+                for(let i = 0; i < s1LowerCase.length - s2LowerCase.length; i++) { 
+                    for(let j = 0; j < s2LowerCase.length; j++) {
+                        console.log(s1LowerCase[i + j]);
+                        if(s1LowerCase[i + j] === s2LowerCase[j]) {
+                            stgLength = stgLength + 1; 
+                        }
+                        if(s1LowerCase[i + j] !== s2LowerCase[j]) {
+                            stgLength = 0;
+                            break;
+                        }
+                        if(stgLength === s2LowerCase.length) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            } 
+            function filterPerson() {
+                let filteredPerson = [];
+                let userInput = document.getElementById('filterInput').value;
+                let columnChoice = document.getElementById('tableData').value;
+                for(let i = 0; i < array.length; i++) {
+                    let matchedData = checkSubStringPresentOrNot(array[i][columnChoice], userInput);
+                    if(matchedData) {
+                        filteredPerson.push(array[i]);
+                    }
+                    console.log(array[i][columnChoice] + ' ' + userInput + ' ' + matchedData);
+                }
+                newTab.innerHTML = " ";
+                newTab.innerHTML = "<tr><td>Name</td><td>Age</td><td>Address</td><td>Profession</td><td>Income</td></tr>";
+                createNewTable(filteredPerson);
+            }
+        </script>
+    </head>
+    <body>
+        <input type="text" id="name" placeholder="Enter Name Here"/></br>
+        <input type="number" id="age" placeholder="Enter Age Here"/></br>
+        <input type="text" id="address" placeholder="Enter address Here"/></br>
+        <input type="text" id="profession" placeholder="Enter profession Here"/></br>
+        <input type="number" id="income" placeholder="Enter Income Here"/></br>
+        <button id="button" onclick="addDataToTable()">Add Data</button></br>
+        <input type="text" id="filterInput" placeholder="Enter the Text to filter" onkeyup="filterPerson()"/><br/>
+        <label for="cars">Choose A column to Filter Data</label>
+        <select name="columns" id="tableData">
+            <option value="name">Name</option>
+            <option value="age">Age</option>
+            <option value="address">Address</option> 
+            <option value="profession">Profession</option>
+            <option value="income">Income</option>
+         </select>
+        <h1>Persibs Table</h1>
+        <table id="newTab">
+            <tr>
+                <td>Name</td>
+                <td>Age</td>
+                <td>Address</td>
+                <td>Profession</td>
+                <td>Income</td>
+            </tr>
+        </table>
+    </body>
+</html>
