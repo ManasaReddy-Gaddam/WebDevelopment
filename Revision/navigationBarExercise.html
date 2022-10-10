@@ -2,7 +2,7 @@
     <head>
         <title>Navigation Bar</title>
         <style>
-            #button {        
+            .button {        
                 margin-left: 20PX;        
                 padding:5px 5px;
                 background-color: gray;
@@ -10,42 +10,25 @@
                 border-radius: 18px;
                 border: 0ch;
             }
-            #guide {
+            .divData {
                 font-size: 80;
                 font-style: italic;
-                color: rgb(29, 205, 193); 
                 justify-content: center;
                 margin-top: 150px;
                 margin-left: 150px;
-                display: flex;               
+                display: flex;  
+            }
+            #guide {
+                color: rgb(29, 205, 193);   
             }
             #API {
-                font-size: 80;
-                font-style: italic;
                 color: rgb(157, 227, 17);
-                justify-content: center;
-                margin-top: 150px;
-                margin-left: 150px;
-                display: flex;
             }
             #Dashboard {
-                font-size: 80;
-                font-style: italic;
                 color: rgb(156, 12, 116);
-                justify-content: center;
-                margin-top: 150px;
-                margin-left: 150px;
-                display: flex;
             }
             #Marketplace {
-                display: flex;
-                font-size: 80;
-                font-style: italic;
                 color: rgb(10, 159, 92);
-                align-items: center;
-                justify-content: center;
-                margin-top: 150px;
-                margin-left: 150px;
             }
             #navbar {
                 display: flex;
@@ -100,14 +83,14 @@
     </head>
     <body>
         <nav id="navbar">
-            <button id="button" onclick="displayGuide()">Guide</button>
-            <button id="button" onclick="displayAPI()">API</button>
-            <button id="button" onclick="displayDashboard()">Dashboard</button>
-            <button id="button" onclick="displayMarketplace()">Marketplace</button>
+            <button class="button" onclick="displayGuide()">Guide</button>
+            <button class="button" onclick="displayAPI()">API</button>
+            <button class="button" onclick="displayDashboard()">Dashboard</button>
+            <button class="button" onclick="displayMarketplace()">Marketplace</button>
         </nav>
-        <div id="Guide" style="display: none;">Welcome to Guide Page</div>
-        <div id="API" style="display: none;">Welcome to API Page</div>
-        <div id="Dashboard" style="display: none;">Welcome to Dashboard Page</div>
-        <div id="Marketplace" style="display: none;">Welcome to Marketplace Page</div>
+        <div class="divData" id="Guide" style="display: block;">Welcome to Guide Page</div>
+        <div class="divData" id="API" style="display: none;">Welcome to API Page</div>
+        <div class="divData" id="Dashboard" style="display: none;">Welcome to Dashboard Page</div>
+        <div class="divData" id="Marketplace" style="display: none;">Welcome to Marketplace Page</div>
     </body>
 </html>
