@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title>Navigation Bar</title>
+        <style>
+            .button {        
+                margin-left: 20PX;        
+                padding:5px 5px;
+                background-color: gray;
+                font-weight: bold;
+                border-radius: 18px;
+                border: 0ch;
+            }
+            .divData {
+                font-size: 80;
+                font-style: italic;
+                justify-content: center;
+                margin-top: 150px;
+                margin-left: 150px;
+                display: flex;  
+            }
+            #guide {
+                color: rgb(29, 205, 193);   
+            }
+            #API {
+                color: rgb(157, 227, 17);
+            }
+            #Dashboard {
+                color: rgb(156, 12, 116);
+            }
+            #Marketplace {
+                color: rgb(10, 159, 92);
+            }
+            #navbar {
+                display: flex;
+                justify-content:center;
+                align-items: center;
+                min-height: 50px;
+                background-color:rgb(63, 58, 58);
+            }
+        </style>
+        <script>
+            function displayGuide() {
+                let guide = document.getElementById('Guide');
+                let API = document.getElementById('API');
+                let Dashboard = document.getElementById('Dashboard');
+                let MarketPlace = document.getElementById('Marketplace');
+                API.style.display = 'none';
+                guide.style.display = 'block';
+                Dashboard.style.display = 'none';
+                MarketPlace.style.display = 'none';
+            }
+            function displayAPI() {
+                let guide = document.getElementById('Guide');
+                let API = document.getElementById('API');
+                let Dashboard = document.getElementById('Dashboard');
+                let MarketPlace = document.getElementById('Marketplace');
+                API.style.display = 'block';
+                guide.style.display = 'none';
+                Dashboard.style.display = 'none';
+                MarketPlace.style.display = 'none';
+            }
+            function displayDashboard() {
+                let guide = document.getElementById('Guide');
+                let API = document.getElementById('API');
+                let Dashboard = document.getElementById('Dashboard');
+                let MarketPlace = document.getElementById('Marketplace');
+                API.style.display = 'none';
+                guide.style.display = 'none';
+                Dashboard.style.display = 'block';
+                MarketPlace.style.display = 'none';
+            }
+            function displayMarketplace() {
+                let guide = document.getElementById('Guide');
+                let API = document.getElementById('API');
+                let Dashboard = document.getElementById('Dashboard');
+                let MarketPlace = document.getElementById('Marketplace');
+                API.style.display = 'none';
+                guide.style.display = 'none';
+                Dashboard.style.display = 'none';
+                MarketPlace.style.display = 'block';
+            }
+        </script>
+    </head>
+    <body>
+        <nav id="navbar">
+            <button class="button" onclick="displayGuide()">Guide</button>
+            <button class="button" onclick="displayAPI()">API</button>
+            <button class="button" onclick="displayDashboard()">Dashboard</button>
+            <button class="button" onclick="displayMarketplace()">Marketplace</button>
+        </nav>
+        <div class="divData" id="Guide" style="display: block;">Welcome to Guide Page</div>
+        <div class="divData" id="API" style="display: none;">Welcome to API Page</div>
+        <div class="divData" id="Dashboard" style="display: none;">Welcome to Dashboard Page</div>
+        <div class="divData" id="Marketplace" style="display: none;">Welcome to Marketplace Page</div>
+    </body>
+</html>
