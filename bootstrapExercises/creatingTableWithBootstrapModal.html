@@ -1,0 +1,136 @@
+<html>
+
+<head>
+    <title>Persons Table</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        table,
+        tr,
+        td {
+            border: 2px solid #b81c36;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        const persons = [
+            {
+                name: 'Manasa',
+                age: 26,
+                address: 'Hyderabad'
+            },
+            {
+                name: 'Rakesh',
+                age: 28,
+                address: 'Nizamabad'
+            },
+            {
+                name: 'Swetha',
+                age: 25,
+                address: 'Karimnagar'
+            },
+            {
+                name: 'Rama',
+                age: 27,
+                address: 'Nalgonds'
+            },
+            {
+                name: 'Vijaya',
+                age: 23,
+                address: 'Kamareddy'
+            },
+            {
+                name: 'Latha',
+                age: 28,
+                address: 'Vijayawada'
+            },
+            {
+                name: 'Kavitha',
+                age: 22,
+                address: 'Sidhipet'
+            },
+            {
+                name: 'Pranay',
+                age: 28,
+                address: 'Nalgonda'
+            }
+        ];
+        function createPersonsTab(persons) {
+            let table = document.getElementById('tab');
+            for (let i = 0; i < persons.length; i++) {
+                let row = table.insertRow();
+                row.innerHTML = "<td>" + persons[i].name + "</td><td>" + persons[i].age + "</td><td>" + persons[i].address + "</td>";
+            }
+        }
+        setTimeout(() => createPersonsTab(persons), 100);
+
+        function addPersonToTable() {
+            let name = document.getElementById("name").value;
+            let age = document.getElementById("age").value;
+            let address = document.getElementById("address").value;
+            let newPerson = { name: name, age: age, address: address };
+            let table = document.getElementById('tab');
+            let row = table.insertRow();
+            row.innerHTML = "<td>" + newPerson.name + "</td><td>" + newPerson.age + "</td><td>" + newPerson.address + "</td>";
+            $("#myModal").modal("hide");
+        }
+        function printEnteredData() {
+            let userEnteredName = document.getElementById('name').value;
+            let userEnteredAge = document.getElementById('age').value;
+            let userEnteredAddress = document.getElementById('address').value;
+            let displayName = document.getElementById('pname');
+            let displayAge = document.getElementById('page');
+            let displayAddress = document.getElementById('paddress');
+            displayName.innerHTML = userEnteredName;
+            displayAge.innerHTML = userEnteredAge;
+            displayAddress.innerHTML = userEnteredAddress;
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" id="name" placeholder="Enter Name" /></br>
+    <input type="number" id="age" placeholder="Enter Age" /></br>
+    <input type="text" id="address" placeholder="Enter Address" /></br>
+    <div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+            onclick="printEnteredData()">Add Data</button>
+    </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Table Data</h5>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body">
+                    Name: <div id="pname">
+                    </div>
+                    Age: <div id="page">
+                    </div>
+                    Address:<div id="paddress">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="addPersonToTable()">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>Persons table with Bootstrap Model</h1>
+    <table id="tab">
+        <tr>
+            <td>Name</td>
+            <td>Age</td>
+            <td>Address</td>
+        </tr>
+    </table>
+</body>
+
+</html>
