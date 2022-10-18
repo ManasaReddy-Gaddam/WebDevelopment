@@ -16,9 +16,11 @@
 
         <script>
             let file = "https://reqres.in/api/users?page=2"
-            fetch (file)
-            .then(x => x.text())
-            .then(y => {
+            let firstProm = fetch(file);
+            let secondProm = firstProm.then(x => {
+                return x.text();
+            });
+            secondProm.then(y => {
                 let object = JSON.parse(y);
                 let users = object.data;
                 // console.log(users);
@@ -29,7 +31,7 @@
                 for(let i = 0; i < users.length; i++) {
                     let row = table.insertRow();
                     row.innerHTML = "<td>"+users[i].id+"</td><td>"+users[i].avatar+"</td><td>"+users[i].email+"</td><td>"+users[i].first_name+"</td><td>"+users[i].last_name+"</td>";
-                } 
+                }
             }
         </script>
     <table id="personsTab">
