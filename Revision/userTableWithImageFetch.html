@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Fetch() method</title>
+        <style>
+            table, th, td {
+                border: 2px solid hsl(308, 92%, 15%);            
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>JavaScript Fetch API</h1>
+        <h2>The fetch() Method</h2>
+        <p id="demo">Fetch a file to change this text.</p>
+
+        <script>
+            let file = "https://reqres.in/api/users?page=2"
+            let firstProm = fetch(file);
+            let secondProm = firstProm.then(x => {
+                return x.text();
+            });
+            secondProm.then(y => {
+                let object = JSON.parse(y);
+                let users = object.data;
+                console.log(users);
+                createTable(users);
+            });
+            function createTable(users) {
+                let table = document.getElementById('personsTab');
+                for(let i = 0; i < users.length; i++) {
+                    let row = table.insertRow();
+                    row.innerHTML = "<td>"+users[i].id+"</td><td><image src=\""+users[i].avatar+"\"></td><td>"+users[i].email+"</td><td>"+users[i].first_name+"</td><td>"+users[i].last_name+"</td>";
+             // "<td>1</td><td><image src=https://reqres.in/img/faces/7-image.jpg></td><td>manasa@gmail.com</td><td>manasa</td><td>gaddam</td>"
+                // <image> tag added for add image to table
+                // "</td><td><image src=\""+users[i].avatar+"\"></td><td>" (\ escape is used to consider " as string value not for ending of string.
+                }
+            }
+        </script>
+        <table id="personsTab">
+            <tr>
+                <td>Id</td>
+                <td>Avatar</td>
+                <td>Email</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+            </tr>
+            <!-- <tr>
+                <td>id</td>
+                <td><image src="users.avathar"></image></td>
+                <td>email</td>
+                <td>first_name</td>
+                <td>last_name</td>
+            </tr> -->
+        </table>
+    </body>
+</html>
